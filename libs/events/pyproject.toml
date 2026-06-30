@@ -1,0 +1,20 @@
+[project]
+name = "eci-events"
+version = "0.0.0"
+description = "Event schemas (Kafka topic payloads), envelope, serialization, and producer/consumer wrappers."
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7",
+    "opentelemetry-api>=1.27",
+    "eci-common",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/events"]
+
+[tool.uv.sources]
+eci-common = { workspace = true }

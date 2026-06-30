@@ -5,9 +5,15 @@ description = "Real-time event-driven platform for discovering, recording, trans
 requires-python = ">=3.12"
 readme = "README.md"
 
-# Service/library packages will be managed as a uv workspace. The workspace
-# declaration is added in feature 01-shared-libs, once libs/* and services/*
-# contain real packages (each with its own pyproject.toml).
+# Service/library packages are managed as a uv workspace. Members are added as
+# each feature lands a real package (with its own pyproject.toml).
+[tool.uv.workspace]
+members = ["libs/common", "libs/events", "libs/temporal"]
+
+[tool.uv.sources]
+eci-common = { workspace = true }
+eci-events = { workspace = true }
+eci-temporal = { workspace = true }
 
 [dependency-groups]
 dev = [
@@ -15,6 +21,9 @@ dev = [
     "pytest>=8",
     "pytest-asyncio>=0.23",
     "pre-commit>=3.8",
+    "eci-common",
+    "eci-events",
+    "eci-temporal",
 ]
 
 [tool.ruff]
