@@ -3,7 +3,7 @@
 from opentelemetry import trace
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.trace import Tracer
 
 _PROVIDER: TracerProvider | None = None
@@ -12,8 +12,9 @@ _PROVIDER: TracerProvider | None = None
 def setup_tracing(service_name: str | None = None) -> TracerProvider:
     """Install a global ``TracerProvider`` (idempotent).
 
-    Exports to the OTLP endpoint from settings when configured, otherwise to the
-    console. Safe to call multiple times; the first call wins.
+    Spans are exported to the OTLP endpoint when one is configured in settings;
+    otherwise the provider records spans (so trace context still propagates) but
+    attaches no exporter. Safe to call multiple times; the first call wins.
     """
     global _PROVIDER
     if _PROVIDER is not None:
@@ -28,11 +29,10 @@ def setup_tracing(service_name: str | None = None) -> TracerProvider:
     if settings.otlp_endpoint:
         from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
-        exporter = OTLPSpanExporter(endpoint=settings.otlp_endpoint)
-    else:
-        exporter = ConsoleSpanExporter()
+        provider.add_span_processor(
+            BatchSpanProcessor(OTLPSpanExporter(endpoint=settings.otlp_endpoint))
+        )
 
-    provider.add_span_processor(BatchSpanProcessor(exporter))
     trace.set_tracer_provider(provider)
     _PROVIDER = provider
     return provider
