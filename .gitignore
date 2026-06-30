@@ -1,0 +1,55 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# ---- Node / Frontend ----
+node_modules/
+.next/
+.turbo/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+frontend/dist/
+frontend/build/
+
+# ---- Terraform ----
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+override.tf
+override.tf.json
+
+# ---- Docker / build artifacts ----
+*.pid
+*.seed
+
+# ---- OS / Editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# ---- Secrets (never commit) ----
+*.pem
+*.key
+secrets/
