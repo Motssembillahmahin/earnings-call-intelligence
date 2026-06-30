@@ -8,12 +8,13 @@ readme = "README.md"
 # Service/library packages are managed as a uv workspace. Members are added as
 # each feature lands a real package (with its own pyproject.toml).
 [tool.uv.workspace]
-members = ["libs/common", "libs/events", "libs/temporal"]
+members = ["libs/common", "libs/events", "libs/temporal", "libs/db"]
 
 [tool.uv.sources]
 eci-common = { workspace = true }
 eci-events = { workspace = true }
 eci-temporal = { workspace = true }
+eci-db = { workspace = true }
 
 [dependency-groups]
 dev = [
@@ -24,6 +25,7 @@ dev = [
     "eci-common",
     "eci-events",
     "eci-temporal",
+    "eci-db",
 ]
 
 [tool.ruff]
@@ -35,7 +37,7 @@ extend-exclude = ["frontend", "infra"]
 select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["common", "events", "temporal"]
+known-first-party = ["common", "events", "temporal", "db"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
