@@ -18,7 +18,9 @@ For each feature:
 
 - **One commit per unit of work** — each scaffolding step, `vision.md`, `verify.md`, and feature
   increment is its own commit. Don't batch unrelated changes.
-- **Single-line commit messages**, imperative mood (e.g. `Add Kafka producer wrapper`).
+- **Type-prefixed, single-line commit messages**, imperative mood. Format: `<type>: <summary>`
+  where type is one of `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `ci`, `build`, `style`
+  (e.g. `feat: add Kafka producer wrapper`, `docs: write architecture spec`).
 - **No AI co-author trailers.**
 - Descriptive branch names (e.g. `feature/13-recorder-single-adapter`).
 
