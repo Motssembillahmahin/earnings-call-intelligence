@@ -5,10 +5,9 @@ description = "Real-time event-driven platform for discovering, recording, trans
 requires-python = ">=3.12"
 readme = "README.md"
 
-# Service/library packages are managed as a uv workspace; members are added
-# as each Phase 0 feature lands (libs/*, services/*, workflows).
-[tool.uv.workspace]
-members = ["libs/*", "services/*", "workflows"]
+# Service/library packages will be managed as a uv workspace. The workspace
+# declaration is added in feature 01-shared-libs, once libs/* and services/*
+# contain real packages (each with its own pyproject.toml).
 
 [dependency-groups]
 dev = [
