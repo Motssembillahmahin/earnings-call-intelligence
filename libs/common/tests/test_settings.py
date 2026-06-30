@@ -10,6 +10,7 @@ def test_settings_defaults():
     assert s.aws_region == "us-east-1"
     assert s.kafka_bootstrap_servers == "localhost:9092"
     assert s.temporal_address == "localhost:7233"
+    assert s.database_url.startswith("postgresql+psycopg://")
 
 
 def test_settings_reads_env_with_prefix(monkeypatch):

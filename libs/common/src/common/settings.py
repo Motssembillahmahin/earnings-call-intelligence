@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     kafka_bootstrap_servers: str = "localhost:9092"
     temporal_address: str = "localhost:7233"
     otlp_endpoint: str | None = None
+    database_url: str = "postgresql+psycopg://eci:eci@localhost:5432/eci"
 
 
 @lru_cache
