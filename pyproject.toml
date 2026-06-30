@@ -1,0 +1,32 @@
+[project]
+name = "earnings-call-intelligence"
+version = "0.0.0"
+description = "Real-time event-driven platform for discovering, recording, transcribing, and publishing earnings-call webcasts."
+requires-python = ">=3.12"
+readme = "README.md"
+
+# Service/library packages are managed as a uv workspace; members are added
+# as each Phase 0 feature lands (libs/*, services/*, workflows).
+[tool.uv.workspace]
+members = ["libs/*", "services/*", "workflows"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.6",
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+    "pre-commit>=3.8",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+extend-exclude = ["frontend", "infra"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["libs", "services", "workflows"]
+addopts = "-ra -q"
