@@ -27,5 +27,5 @@ select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
-testpaths = ["libs", "services", "workflows"]
+testpaths = ["tests", "libs", "services", "workflows"]
 addopts = "-ra -q"
